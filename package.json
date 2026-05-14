@@ -1,0 +1,117 @@
+{
+  "name": "graph-ide",
+  "displayName": "Graph IDE",
+  "description": "Live repo-wide 3D graph navigation driven by LSP",
+  "version": "0.1.0",
+  "publisher": "graph-ide",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Visualization", "Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "graphIde.openGraph",
+        "title": "Graph IDE: Open Graph"
+      },
+      {
+        "command": "graphIde.reindex",
+        "title": "Graph IDE: Re-index Workspace"
+      },
+      {
+        "command": "graphIde.applyView",
+        "title": "Graph IDE: Apply View"
+      },
+      {
+        "command": "graphIde.stopIndexing",
+        "title": "Graph IDE: Stop Indexing"
+      },
+      {
+        "command": "graphIde.toggleClusters",
+        "title": "Graph IDE: Toggle Cluster Spheres"
+      },
+      {
+        "command": "graphIde.toggleLines",
+        "title": "Graph IDE: Toggle Edge Lines"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "graphIde",
+          "title": "Graph IDE",
+          "icon": "$(type-hierarchy)"
+        }
+      ]
+    },
+    "views": {
+      "graphIde": [
+        {
+          "id": "graphIde.views",
+          "name": "Views"
+        },
+        {
+          "id": "graphIde.filters",
+          "name": "Filters"
+        },
+        {
+          "id": "graphIde.status",
+          "name": "Index Status"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Graph IDE",
+      "properties": {
+        "graphIde.crawlConcurrency": {
+          "type": "number",
+          "default": 5,
+          "description": "Number of files to index concurrently during background crawl"
+        },
+        "graphIde.depthSpacing": {
+          "type": "number",
+          "default": 80,
+          "description": "Z-axis spacing between call depth levels"
+        },
+        "graphIde.showClusters": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show translucent wireframe spheres around file/module clusters"
+        },
+        "graphIde.showLines": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show edge lines between nodes. When off, lines only appear on hover."
+        },
+        "graphIde.nodeSizeScale": {
+          "type": "number",
+          "default": 1.0,
+          "description": "Scale factor for node size (based on reference count)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "build:watch": "node esbuild.config.mjs --watch",
+    "build:webview": "node esbuild.config.mjs --webview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/three": "^0.160.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-electron": "^2.3.0",
+    "@vscode/vsce": "^2.22.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.2.0"
+  },
+  "dependencies": {
+    "d3-force-3d": "^3.0.5",
+    "three": "^0.160.0"
+  }
+}
