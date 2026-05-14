@@ -1,6 +1,8 @@
 # Graph IDE
 
 A VS Code extension that visualizes your codebase as a live, interactive 3D graph. Symbols become nodes, relationships become edges — all driven by the Language Server Protocol.
+
+
 <img width="3455" height="2164" alt="Screenshot 2026-05-14 at 18-01-46" src="https://github.com/user-attachments/assets/c84d086b-ccb4-42ab-8c15-7cb3c6916773" />
 
 
